@@ -27,28 +27,11 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-images.forEach(i => {
+const markup = images.map(({ url, alt }) => `
+  <li class="gallery-item">
+    <img class="gallery-img" src="${url}" alt="${alt}" width="360" height="300">
+  </li>
+`).join('');
 
-  // створення й додавання HTML-елементів, використовуючи шаблонні рядки і elem.insertAdjacentHTML()
-
-  // gallery.insertAdjacentHTML('beforeend', `<li class="gallery-item"><img class="gallery-img" src="${i.url}" alt="${i.alt}" width="360" height="300"></img>></li>`);
-
-
-  // створення й додавання HTML-елементів, використовуючи document.createElement() і elem.append()
-
-  const galleryItem = document.createElement('li');
-  const galleryImage = document.createElement('img');
-
-  galleryItem.classList.add('gallery-item');
-  galleryImage.classList.add('gallery-img');
-
-  gallery.append(galleryItem);
-  galleryItem.append(galleryImage);
-
-  galleryImage.setAttribute('src', `${i.url}`);
-  galleryImage.setAttribute('alt', `${i.alt}`);
-  galleryImage.setAttribute('width', `360`);
-  galleryImage.setAttribute('height', `300`);
-
-});
+gallery.insertAdjacentHTML('beforeend', markup);
 
